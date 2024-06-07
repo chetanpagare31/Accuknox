@@ -35,15 +35,19 @@ To run this project using Docker, follow these steps:
 ## To Test APIs 
 
 ### Signup:
+
 Method: POST
+
 URL: http://localhost:8000/api/signup/
+
 Body (JSON)
+```json
     {
         "username": "Devansh",
         "email": "devansh@gmail.com",
         "password": "Devansh@123"
     }
-
+```
 Sample Response:
     {
         "username": "Devansh",
@@ -53,15 +57,19 @@ Sample Response:
 
 
 ### SignIn:
-Method: POST
-URL: http://localhost:8000/api/login/
-Body (JSON):
+ Method: POST
+ 
+ URL: http://localhost:8000/api/signin/
+ 
+ Body (JSON):
+ ```json
     {
         "email": "chetan@gmail.com",
         "password": "Chetan@123"
     }
-
+```
 Sample Response:
+```json
     {
         "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNzgxOTkyNiwiaWF0IjoxNzE3NzMzNTI2LCJqdGkiOiJhN2VjNWIwZDY4NzE0YmE2ODk2YWQwOGI2MzcwY2FkOCIsInVzZXJfaWQiOjF9.GFg5JURCaoSyuVSXMunMitRK1LKt8jTUNFHg5NKmRKs",
         "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NzMzODI2LCJpYXQiOjE3MTc3MzM1MjYsImp0aSI6IjIyYTU5MWZiZDQ2OTQxM2Y4YTc0MzNmMTIzZGE2ZTA5IiwidXNlcl9pZCI6MX0.fTxcDDXqCRSuEfhaN5AILzD9J8FT6SEGRnCRR4ElyJs",
@@ -71,15 +79,19 @@ Sample Response:
             "email": "chetan@gmail.com"
         }
     }
+```
 
 ### Get users:
 Method: GET
+
 URL: http://localhost:8000/api/get_users/
+
 Headers:
 Key: Authorization
 Value: Bearer <your_jwt_token> (replace <your_jwt_token> with a valid token)
 
 Sample Response:
+```json
 [
     {
         "id": 1,
@@ -167,28 +179,35 @@ Sample Response:
         "email": "devansh@gmail.com"
     }
 ]
-
+```
 ### refresh token:
 Method: POST
+
 URL: http://localhost:8000/api/friend_request/
+
 Body (JSON):
+```json
 {
     "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNzgxOTkyNiwiaWF0IjoxNzE3NzMzNTI2LCJqdGkiOiJhN2VjNWIwZDY4NzE0YmE2ODk2YWQwOGI2MzcwY2FkOCIsInVzZXJfaWQiOjF9.GFg5JURCaoSyuVSXMunMitRK1LKt8jTUNFHg5NKmRKs"
 }
-
+```
 Sample Response:
+```json
 {
     "access": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NzM2NTEyLCJpYXQiOjE3MTc3MzM1MjYsImp0aSI6IjAyOGI1YjJmOGViZDQ4OWY5ODQzODAxZjQ5ODRiODYxIiwidXNlcl9pZCI6MX0.q-zfW2H0BT-94qeFumfvQyt9PK6f_1Xgk4p4zY1CLXM"
 }
-
+```
 ### search users:
 Method: GET
+
 URL: http://localhost:8000/api/search_users/?query=a
+
 Headers:
 Key: Authorization
 Value: Bearer <your_jwt_token> (replace <your_jwt_token> with a valid token)
 
 Sample Response:
+```json
 {
     "count": 14,
     "next": "http://localhost:8000/api/search_users/?page=2&q=a",
@@ -246,35 +265,43 @@ Sample Response:
         }
     ]
 }
+```
 
 
 ### send friend request:
 Method: POST
+
 URL: http://localhost:8000/api/friend_request/
+
 Headers:
 Key: Authorization
 Value: Bearer <your_jwt_token>
 Body (JSON):
+```json
 {
     "to_user": "Devansh"
 }
-
+```
 Sample Response:
+```json
 {
     "id": 12,
     "from_user": "chetan",
     "status": "pending",
     "timestamp": "2024-06-07T04:16:38.581253Z"
 }
-
+```
 ### list of pending request:
 Method: GET
+
 URL: http://localhost:8000/api/list_pending_request/
+
 Headers:
 Key: Authorization
 Value: Bearer <your_jwt_token>
 
 Sample Response:
+```json
 [
     {
         "id": 10,
@@ -289,14 +316,18 @@ Sample Response:
         "timestamp": "2024-06-07T03:51:51.873702Z"
     }
 ]
+```
 ### list of friends:
 Method: GET
+
 URL: http://localhost:8000/api/list_friends/
+
 Headers:
 Key: Authorization
 Value: Bearer <your_jwt_token>
 
 Sample Response:
+```json
 [
     {
         "id": 9,
@@ -324,19 +355,22 @@ Sample Response:
         "email": "devansh@gmail.com"
     }
 ]
-
+```
 ### accept/reject friend request:
 Method: PATCH
+
 URL: http://localhost:8000/api/manage_friend_request/
+
 Headers:
 Key: Authorization
 Value: Bearer <your_jwt_token>
 Body (JSON):
+```json
 {
     "from_user": "Devansh",
     "status": "accepted"
 }
-
+```
 Sample Response:
 {
     "id": 11,
