@@ -30,7 +30,7 @@ To run this project using Docker, follow these steps:
 
 ## Postman Collection to test the APIs
 
-[Download the Postman Collection]( Social_Networking APP.postman_collection.json)
+[Download the Postman Collection]( Social_Networking_APP.postman_collection.json)
 
 ## To Test APIs 
 
