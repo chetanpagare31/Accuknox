@@ -72,7 +72,7 @@ class SearchUserView(APIView):
 
 
 
-class FriendRequestView(APIView):
+class SendFriendRequestView(APIView):
 
     permission_classes = [permissions.IsAuthenticated]
 
@@ -100,6 +100,8 @@ class FriendRequestView(APIView):
         
         return Response(FriendRequestSerializer(friend_request).data, status=status.HTTP_201_CREATED)
 
+class ManageFriendRequestView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
 
     def patch(self, request, *args, **kwargs):
         from_username = request.data.get('from_user')

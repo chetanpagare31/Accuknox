@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist'
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
@@ -79,16 +80,19 @@ WSGI_APPLICATION = 'socialNetworkingProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'social_nwk_db',
-        'HOST': 'localhost',
-        'PORT': 3306,
-        'USER':'root',
-        'PASSWORD':'root',
+        'NAME': os.environ.get('DATABASE_NAME', 'social_nwk_db'),
+        'USER': os.environ.get('DATABASE_USER', 'root'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'root'),
+        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
+        'PORT': os.environ.get('DATABASE_PORT', 3306),
     }
 }
+
 
 
 # Password validation
@@ -139,14 +143,11 @@ REST_FRAMEWORK = {
     ),
 }
 
-JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'accounts.utils.my_jwt_response_handler'
-}
-
 from datetime import timedelta
 
 SIMPLEJWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=300),  # Adjust as needed
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Adjust as needed
-    'ROTATE_REFRESH_TOKENS': True,  # Blacklist old tokens on refresh
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
 }

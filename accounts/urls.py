@@ -12,7 +12,9 @@ urlpatterns = [
 
     path('refresh/',TokenRefreshView.as_view(), name='refresh-token'),
     path('search_users/', SearchUserView.as_view(), name='search_users'),
-    path('friend_request/', FriendRequestView.as_view(), name='friend-request'),
+    path('friend_request/', SendFriendRequestView.as_view(), name='friend-request'),
+    path('manage_friend_request/', ManageFriendRequestView.as_view(), name='manage-friend-request'),
+
     path('list_friends/', ListFriendsView.as_view(), name='list_friends'),
     path('list_pending_request/', ListPendingRequestView.as_view(), name='list_pending_request'),
     
