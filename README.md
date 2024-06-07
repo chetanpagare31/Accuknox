@@ -25,7 +25,7 @@ To run this project using Docker, follow these steps:
         Build the Docker images.
         Start the MySQL and Django containers.
         Apply migrations.
-    After completion of this build you can test each api over Postman/Thunder-client/Git Bash as given below
+    After completion of this build you can test each api over Postman/Thunder-client as given below
 
 3. The application will be available at `http://localhost:8000`.
 
