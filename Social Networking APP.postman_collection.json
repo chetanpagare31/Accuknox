@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "photos req",
+			"name": "signup",
 			"event": [
 				{
 					"listen": "test",
@@ -15,47 +15,304 @@
 						"exec": [
 							"pm.test(\"Status code is 200\",function(){pm.response.to.have.status(200);});"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
 			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Devansh\",\r\n    \"email\": \"devansh@gmail.com\",\r\n    \"password\": \"Devansh@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/signup/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"chetan@gmail.com\",\r\n    \"password\": \"Chetan@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/signin/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"signin",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NzMzMzE4LCJpYXQiOjE3MTc3MzMwMTgsImp0aSI6IjQxMmMwNzE0YzRjZDRkNTlhZThiNDE3YTgwNmMzMGM2IiwidXNlcl9pZCI6MX0.-h64fcYy8Q-eAOEP4XimT6tLbaMg_WzxB6gnkUJk1tI",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://www.flickr.com/services/rest/?method=flickr.photos.getPopular&api_key=099a3e9feb293e63884e7bc228978f1f&user_id=193351379%40N02&format=json&nojsoncallback=1",
-					"protocol": "https",
+					"raw": "http://localhost:8000/api/get_users/",
+					"protocol": "http",
 					"host": [
-						"www",
-						"flickr",
-						"com"
+						"localhost"
 					],
+					"port": "8000",
 					"path": [
-						"services",
-						"rest",
+						"api",
+						"get_users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh_token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNzgxOTkyNiwiaWF0IjoxNzE3NzMzNTI2LCJqdGkiOiJhN2VjNWIwZDY4NzE0YmE2ODk2YWQwOGI2MzcwY2FkOCIsInVzZXJfaWQiOjF9.GFg5JURCaoSyuVSXMunMitRK1LKt8jTUNFHg5NKmRKs\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/refresh/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"refresh",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search_users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NzM0MDMwLCJpYXQiOjE3MTc3MzM1MjYsImp0aSI6ImVhYjBkN2ZlMGU3YTRiZDRiNWUyMDdkNTUzY2FiNmJhIiwidXNlcl9pZCI6MX0.5LW6OYljbLJR_Di5dBC0tGf71TUoPctFE4IG8YJbB8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/search_users/?q=a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"search_users",
 						""
 					],
 					"query": [
 						{
-							"key": "method",
-							"value": "flickr.photos.getPopular"
-						},
-						{
-							"key": "api_key",
-							"value": "099a3e9feb293e63884e7bc228978f1f"
-						},
-						{
-							"key": "user_id",
-							"value": "193351379%40N02"
-						},
-						{
-							"key": "format",
-							"value": "json"
-						},
-						{
-							"key": "nojsoncallback",
-							"value": "1"
+							"key": "q",
+							"value": "a"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_friend_request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NzM0MDMwLCJpYXQiOjE3MTc3MzM1MjYsImp0aSI6ImVhYjBkN2ZlMGU3YTRiZDRiNWUyMDdkNTUzY2FiNmJhIiwidXNlcl9pZCI6MX0.5LW6OYljbLJR_Di5dBC0tGf71TUoPctFE4IG8YJbB8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"to_user\": \"Devansh\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/friend_request/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"friend_request",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list_of_pending_request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NzM0MDMwLCJpYXQiOjE3MTc3MzM1MjYsImp0aSI6ImVhYjBkN2ZlMGU3YTRiZDRiNWUyMDdkNTUzY2FiNmJhIiwidXNlcl9pZCI6MX0.5LW6OYljbLJR_Di5dBC0tGf71TUoPctFE4IG8YJbB8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/list_pending_request/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"list_pending_request",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "accept/reject friend request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NzM0MDMwLCJpYXQiOjE3MTc3MzM1MjYsImp0aSI6ImVhYjBkN2ZlMGU3YTRiZDRiNWUyMDdkNTUzY2FiNmJhIiwidXNlcl9pZCI6MX0.5LW6OYljbLJR_Di5dBC0tGf71TUoPctFE4IG8YJbB8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from_user\": \"Devansh\",\r\n    \"status\": \"accepted\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/manage_friend_request/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"manage_friend_request",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list of friends",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NzM2NTEyLCJpYXQiOjE3MTc3MzM1MjYsImp0aSI6IjAyOGI1YjJmOGViZDQ4OWY5ODQzODAxZjQ5ODRiODYxIiwidXNlcl9pZCI6MX0.q-zfW2H0BT-94qeFumfvQyt9PK6f_1Xgk4p4zY1CLXM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/list_friends/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"list_friends",
+						""
 					]
 				}
 			},
